@@ -37,7 +37,7 @@ character(len=10) :: name
 name = 'Fortran'
 ```
 
-##Estructuras de Decisión
+## Estructuras de Decisión
 
 ## If Else
 
@@ -322,6 +322,48 @@ program ClassExample
 end program ClassExample
 
 ```
+## Lectura e Impresiones
+```fortran
+program ReadAndPrintData
+    implicit none
+    integer :: intValue
+    real :: realValue
+    character(len=20) :: str
+    integer, dimension(5) :: arr
+    integer :: i, io_status
+
+    ! Lectura desde la consola
+    print *, 'Introduce un valor entero:'
+    read(*, *) intValue
+    print *, 'Introduce un valor real:'
+    read(*, *) realValue
+    print *, 'Introduce una cadena de texto:'
+    read(*, '(A)') str
+
+    ! Impresión de datos leídos desde la consola
+    print *, 'Valor entero introducido:', intValue
+    print *, 'Valor real introducido:', realValue
+    print *, 'Cadena de texto introducida:', str
+
+    ! Lectura desde un archivo
+    open(unit=10, file='data.txt', status='old', action='read', iostat=io_status)
+    if (io_status /= 0) then
+        print *, 'Error al abrir el archivo.'
+        stop
+    end if
+
+    read(10, *) arr
+    close(10)
+
+    ! Impresión de datos leídos desde el archivo
+    print *, 'Array leído del archivo:'
+    do i = 1, 5
+        print *, 'Elemento', i, ':', arr(i)
+    end do
+
+end program ReadAndPrintData
+```
+
 ## Conceptos combinados
 
 ```fortran
