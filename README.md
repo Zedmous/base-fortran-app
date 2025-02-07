@@ -203,6 +203,74 @@ program ConvertRealToString
 end program ConvertRealToString
 ```
 
+## Funciones
+```fortran
+program FunctionExample
+    implicit none
+    real :: result
+
+    result = square(5.0)
+    print *, 'El cuadrado de 5.0 es', result
+
+contains
+
+    real function square(x)
+        real, intent(in) :: x
+        square = x * x
+    end function square
+
+end program FunctionExample
+```
+
+## Subrutinas
+```fortran
+program SubroutineExample
+    implicit none
+
+    call greet('Fortran')
+
+contains
+
+    subroutine greet(name)
+        character(len=*), intent(in) :: name
+        print *, 'Hola, ', name
+    end subroutine greet
+
+end program SubroutineExample
+```
+## Definición de Módulos y Tipos Definidos por el Usuario
+
+```fortran
+module PersonModule
+    type :: Person
+        character(len=20) :: name
+        integer :: age
+    contains
+        procedure :: printInfo
+    end type Person
+
+contains
+
+    subroutine printInfo(this)
+        class(Person), intent(in) :: this
+        print *, 'Nombre: ', this%name
+        print *, 'Edad: ', this%age
+    end subroutine printInfo
+
+end module PersonModule
+
+program ClassExample
+    use PersonModule
+    implicit none
+    type(Person) :: person1
+
+    person1%name = 'Juan'
+    person1%age = 30
+    call person1%printInfo()
+
+end program ClassExample
+
+```
 ## Conceptos combinados
 
 ```fortran
@@ -390,4 +458,77 @@ program FloatingPointAndErrors
     print *, 'División: ', quot
 
 end program FloatingPointAndErrors
+```
+## Operaciones arimeticas
+```fortran
+program MathOperations
+    implicit none
+    real :: a, b, c
+    integer :: intResult
+    real :: floatResult
+
+    ! Operaciones Aritméticas Básicas
+    a = 5.0
+    b = 2.0
+    c = a + b
+    print *, 'Adición: ', c
+    c = a - b
+    print *, 'Sustracción: ', c
+    c = a * b
+    print *, 'Multiplicación: ', c
+    c = a / b
+    print *, 'División: ', c
+
+    ! Potencia
+    c = a ** b
+    print *, 'Potencia: ', c
+
+    ! Funciones Matemáticas
+    c = sqrt(a)
+    print *, 'Raíz Cuadrada: ', c
+    c = abs(a)
+    print *, 'Valor Absoluto: ', c
+    c = exp(a)
+    print *, 'Exponencial: ', c
+    c = log(a)
+    print *, 'Logaritmo Natural: ', c
+    c = log10(a)
+    print *, 'Logaritmo Base 10: ', c
+
+    ! Funciones Trigonométricas
+    c = sin(a)
+    print *, 'Seno: ', c
+    c = cos(a)
+    print *, 'Coseno: ', c
+    c = tan(a)
+    print *, 'Tangente: ', c
+    c = asin(0.5)
+    print *, 'Arc Seno: ', c
+    c = acos(0.5)
+    print *, 'Arc Coseno: ', c
+    c = atan(1.0)
+    print *, 'Arc Tangente: ', c
+
+    ! Funciones Hiperbólicas
+    c = sinh(a)
+    print *, 'Seno Hiperbólico: ', c
+    c = cosh(a)
+    print *, 'Coseno Hiperbólico: ', c
+    c = tanh(a)
+    print *, 'Tangente Hiperbólica: ', c
+
+    ! Funciones de Redondeo
+    c = 5.6789
+    intResult = nint(c)
+    print *, 'Redondeo al Entero más Cercano: ', intResult
+    intResult = int(c)
+    print *, 'Parte Entera: ', intResult
+    floatResult = 5.6789
+    intResult = nint(floatResult * 100.0) / 100.0  ! Redondeo a 2 decimales
+    print *, 'Redondeo a 2 Decimales: ', intResult / 100.0
+    floatResult = 5.6789
+    intResult = int(floatResult * 100.0) / 100.0  ! Parte entera a 2 decimales
+    print *, 'Parte Entera a 2 Decimales: ', intResult / 100.0
+
+end program MathOperations
 ```
