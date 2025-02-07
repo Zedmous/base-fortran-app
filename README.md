@@ -34,8 +34,9 @@ name = 'Fortran'
 ```
 ##Estructuras de Decisión
 
-```fortran
 ## If Else
+
+```fortran
 program DecisionExample
     integer :: x
     x = 10
@@ -132,4 +133,57 @@ program MultiArrayExample
 
     print *, mat
 end program MultiArrayExample
+```
+
+### Conversiones
+
+## Convertir de entero a real
+```fortran
+program ConvertIntToReal
+    integer :: a
+    real :: b
+
+    a = 5
+    b = real(a)
+
+    print *, 'b =', b
+end program ConvertIntToReal
+```
+
+## Convertir de real a entero
+```fortran
+program ConvertRealToInt
+    real :: b
+    integer :: a
+
+    b = 3.14
+    a = int(b)
+
+    print *, 'a =', a
+end program ConvertRealToInt
+```
+## Convertir de caracteres a enteros
+```fortran
+program CharToIntExample
+    character(len=5) :: str
+    integer :: num
+
+    str = '12345'
+    read(str, *) num
+
+    print *, 'num =', num
+end program CharToIntExample
+```
+
+## Convertir de real a strings
+```fortran
+program ConvertRealToString
+    real :: num
+    character(len=20) :: str
+
+    num = 3.14159
+    write(str, '(F0.5)') num  ! F0.5 es el formato para convertir real a string con 5 decimales
+
+    print *, 'El número real como string es:', str
+end program ConvertRealToString
 ```
