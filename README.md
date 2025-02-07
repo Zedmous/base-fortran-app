@@ -9,7 +9,8 @@ integer :: a
 a = 10
 ```
 ### Reales
-```real :: b
+```
+real :: b
 b = 3.14
 ```
 
