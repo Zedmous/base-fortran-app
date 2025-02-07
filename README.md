@@ -9,15 +9,17 @@ integer :: a
 a = 10
 ```
 ### Reales
-```
+```fortran
 real :: b
 b = 3.14
 ```
 
 ### Complejos
+
+```fortran
 complex :: c
 c = (1.0, 2.0)
-
+```
 ### logicos
 logical :: flag
 flag = .true.
