@@ -202,7 +202,58 @@ program ConvertRealToString
     print *, 'El número real como string es:', str
 end program ConvertRealToString
 ```
+## Operadores logicos y comparativos
+```fortran
+program LogicalComparisonOperators
+    implicit none
+    integer :: a, b, i
+    logical :: condition
 
+    ! Inicialización de valores
+    a = 5
+    b = 10
+    condition = .true.
+
+    ! Ejemplos de operadores de comparación en IF
+    if (a == b) then
+        print *, 'a es igual a b'
+    else if (a /= b) then
+        print *, 'a es diferente de b'
+    end if
+
+    if (a > b) then
+        print *, 'a es mayor que b'
+    else if (a < b) then
+        print *, 'a es menor que b'
+    else if (a >= b) then
+        print *, 'a es mayor o igual que b'
+    else if (a <= b) then
+        print *, 'a es menor o igual que b'
+    end if
+
+    ! Ejemplos de operadores lógicos en IF
+    if (a > 0 .AND. b < 15) then
+        print *, 'a es mayor que 0 y b es menor que 15'
+    end if
+
+    if (a < 0 .OR. b > 5) then
+        print *, 'a es menor que 0 o b es mayor que 5'
+    end if
+
+    if (.NOT. (a == b)) then
+        print *, 'a no es igual a b'
+    end if
+
+    ! Ejemplo de operadores lógicos y de comparación en DO WHILE
+    i = 1
+    do while (i <= 10 .AND. condition)
+        print *, 'i =', i
+        if (i == 5) condition = .false.
+        i = i + 1
+    end do
+
+end program LogicalComparisonOperators
+```
 ## Funciones
 ```fortran
 program FunctionExample
