@@ -625,3 +625,42 @@ program MathOperations
 
 end program MathOperations
 ```
+
+## Sistemas númericos
+
+```fortran
+program NumberSystems
+    implicit none
+    integer :: bin_a, bin_b, bin_result
+    integer :: oct_a, oct_b, oct_result
+    integer :: hex_a, hex_b, hex_result
+
+    ! Operaciones en Binario
+    bin_a = 2#0101  ! Binario 0101 = Decimal 5
+    bin_b = 2#0110  ! Binario 0110 = Decimal 6
+    bin_result = bin_a + bin_b
+    print *, 'Resultado de la Adición en Binario: ', bin_result
+
+    bin_result = bin_a - bin_b
+    print *, 'Resultado de la Sustracción en Binario: ', bin_result
+
+    ! Operaciones en Octal
+    oct_a = 8#123  ! Octal 123 = Decimal 83
+    oct_b = 8#456  ! Octal 456 = Decimal 302
+    oct_result = oct_a + oct_b
+    print *, 'Resultado de la Adición en Octal: ', oct_result
+
+    oct_result = oct_a - oct_b
+    print *, 'Resultado de la Sustracción en Octal: ', oct_result
+
+    ! Operaciones en Hexadecimal
+    hex_a = 16#1A  ! Hexadecimal 1A = Decimal 26
+    hex_b = 16#2B  ! Hexadecimal 2B = Decimal 43
+    hex_result = hex_a + hex_b
+    print *, 'Resultado de la Adición en Hexadecimal: ', hex_result
+
+    hex_result = hex_a - hex_b
+    print *, 'Resultado de la Sustracción en Hexadecimal: ', hex_result
+
+end program NumberSystems
+```
