@@ -21,15 +21,20 @@ complex :: c
 c = (1.0, 2.0)
 ```
 ### logicos
+
+```fortran
 logical :: flag
 flag = .true.
-
+```
 ### caracteres
+
+```fortran
 character(len=10) :: name
 name = 'Fortran'
-
+```
 ##Estructuras de Decisión
 
+```fortran
 ## If Else
 program DecisionExample
     integer :: x
@@ -41,8 +46,10 @@ program DecisionExample
         print *, 'x es menor o igual a 5'
     end if
 end program DecisionExample
-
+```
 ## Select Case
+
+```fortran
 program CaseExample
     integer :: x
     x = 2
@@ -56,16 +63,21 @@ program CaseExample
             print *, 'x no es 1 ni 2'
     end select
 end program CaseExample
+```
 
 ## DO Loop
+
+```fortran
 program DoLoopExample
     integer :: i
     do i = 1, 10
         print *, 'i =', i
     end do
 end program DoLoopExample
-
+```
 ## DO WHILE Loop
+
+```fortran
 program DoWhileExample
     integer :: i
     i = 1
@@ -75,8 +87,10 @@ program DoWhileExample
         i = i + 1
     end do
 end program DoWhileExample
-
+```
 ## EXIT y CYCLE
+
+```fortran
 program ExitCycleExample
     integer :: i
 
@@ -86,10 +100,12 @@ program ExitCycleExample
         print *, 'i =', i
     end do
 end program ExitCycleExample
+```
 
 ### Arreglos
 
 ## Declaración y Uso de Arreglos Unidimensionales
+```fortran
 program ArrayExample
     integer, dimension(5) :: arr
     integer :: i
@@ -100,8 +116,10 @@ program ArrayExample
 
     print *, arr
 end program ArrayExample
+```
 
 ## Arreglos Multidimensionales
+```fortran
 program MultiArrayExample
     integer, dimension(3, 3) :: mat
     integer :: i, j
@@ -114,3 +132,4 @@ program MultiArrayExample
 
     print *, mat
 end program MultiArrayExample
+```
