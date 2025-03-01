@@ -1,51 +1,97 @@
-# Guía de Fortran
+# GUÍA DE FORTRAN
 
-## Tipos de Variables
+## VARIABLES Y SUS TIPOS
 
-### Enteros
+### Variables Enteras
 
 ```fortran
 integer :: a
 a = 10
 ```
 
-### Reales
+### Variables Reales
 
 ```fortran
 real :: b
 b = 3.14
 ```
 
-### Complejos
+### Variables Complejos
 
 ```fortran
 complex :: c
 c = (1.0, 2.0)
 ```
 
-### logicos
+### Variables lógicas
 
 ```fortran
 logical :: flag
 flag = .true.
 ```
 
-### caracteres
+### Variables de tipo de Cadena de Carácteres
 
 ```fortran
 character(len=10) :: name
 name = 'Fortran'
 ```
 
-## Estructuras de Decisión
+## LECTURA Y ESCRITURA DE DATOS
 
-## If Else
+### Lectura e Impresiones
+
+```fortran
+program ReadAndPrintData
+    !Declaración de Variables
+    implicit none
+    integer :: intValue
+    real :: realValue
+    character(len=20) :: str
+    integer, dimension(5) :: arr
+    integer :: i, io_status
+
+    ! Lectura desde la consola
+    print *, 'Introduce un valor entero:'
+    read(*, *) intValue
+    print *, 'Introduce un valor real:'
+    read(*, *) realValue
+    print *, 'Introduce una cadena de texto:'
+    read(*, '(A)') str
+
+    ! Impresión de datos leídos desde la consola
+    print *, 'Valor entero introducido:', intValue
+    print *, 'Valor real introducido:', realValue
+    print *, 'Cadena de texto introducida:', str
+
+    ! Lectura desde un archivo
+    open(unit=10, file='data.txt', status='old', action='read', iostat=io_status)
+    if (io_status /= 0) then
+        print *, 'Error al abrir el archivo.'
+        stop
+    end if
+
+    read(10, *) arr
+    close(10)
+
+    ! Impresión de datos leídos desde el archivo
+    print *, 'Array leído del archivo:'
+    do i = 1, 5
+        print *, 'Elemento', i, ':', arr(i)
+    end do
+
+end program ReadAndPrintData
+```
+## ESTRUCTURAS DE DATOS
+
+### Estructuras de Decisión o Selectivas
+
+#### If Else
 
 ```fortran
 program DecisionExample
     integer :: x
     x = 10
-
     if (x > 5) then
         print *, 'x es mayor que 5'
     else
@@ -54,7 +100,7 @@ program DecisionExample
 end program DecisionExample
 ```
 
-## Select Case
+#### Select Case
 
 ```fortran
 program CaseExample
@@ -72,7 +118,9 @@ program CaseExample
 end program CaseExample
 ```
 
-## DO Loop
+## Estructuras de Repetitivas
+
+### DO Loop
 
 ```fortran
 program DoLoopExample
@@ -83,7 +131,7 @@ program DoLoopExample
 end program DoLoopExample
 ```
 
-## DO WHILE Loop
+### Do While Loop
 
 ```fortran
 program DoWhileExample
@@ -97,7 +145,7 @@ program DoWhileExample
 end program DoWhileExample
 ```
 
-## EXIT y CYCLE
+### Exit y Cycle
 
 ```fortran
 program ExitCycleExample
@@ -111,98 +159,9 @@ program ExitCycleExample
 end program ExitCycleExample
 ```
 
-### Arreglos
+## OPERADORES
 
-## Declaración y Uso de Arreglos Unidimensionales
-
-```fortran
-program ArrayExample
-    integer, dimension(5) :: arr
-    integer :: i
-
-    do i = 1, 5
-        arr(i) = i * 2
-    end do
-
-    print *, arr
-end program ArrayExample
-```
-
-## Arreglos Multidimensionales
-
-```fortran
-program MultiArrayExample
-    integer, dimension(3, 3) :: mat
-    integer :: i, j
-
-    do i = 1, 3
-        do j = 1, 3
-            mat(i, j) = i + j
-        end do
-    end do
-
-    print *, mat
-end program MultiArrayExample
-```
-
-### Conversiones
-
-## Convertir de entero a real
-
-```fortran
-program ConvertIntToReal
-    integer :: a
-    real :: b
-
-    a = 5
-    b = real(a)
-
-    print *, 'b =', b
-end program ConvertIntToReal
-```
-
-## Convertir de real a entero
-
-```fortran
-program ConvertRealToInt
-    real :: b
-    integer :: a
-
-    b = 3.14
-    a = int(b)
-
-    print *, 'a =', a
-end program ConvertRealToInt
-```
-
-## Convertir de caracteres a enteros
-
-```fortran
-program CharToIntExample
-    character(len=5) :: str
-    integer :: num
-
-    str = '12345'
-    read(str, *) num
-
-    print *, 'num =', num
-end program CharToIntExample
-```
-
-## Convertir de real a strings
-
-```fortran
-program ConvertRealToString
-    real :: num
-    character(len=20) :: str
-
-    num = 3.14159
-    write(str, '(F0.5)') num  ! F0.5 es el formato para convertir real a string con 5 decimales
-
-    print *, 'El número real como string es:', str
-end program ConvertRealToString
-```
-## Operadores logicos y comparativos
+### Operadores logicos y comparativos
 ```fortran
 program LogicalComparisonOperators
     implicit none
@@ -254,6 +213,282 @@ program LogicalComparisonOperators
 
 end program LogicalComparisonOperators
 ```
+
+## CONVERSIONES
+
+### Convertir de entero a real
+
+```fortran
+program ConvertIntToReal
+    integer :: a
+    real :: b
+
+    a = 5
+    b = real(a)
+
+    print *, 'b =', b
+end program ConvertIntToReal
+```
+
+### Convertir de real a entero
+
+```fortran
+program ConvertRealToInt
+    real :: b
+    integer :: a
+
+    b = 3.14
+    a = int(b)
+
+    print *, 'a =', a
+end program ConvertRealToInt
+```
+
+### Convertir de caracteres a enteros
+
+```fortran
+program CharToIntExample
+    character(len=5) :: str
+    integer :: num
+
+    str = '12345'
+    read(str, *) num
+
+    print *, 'num =', num
+end program CharToIntExample
+```
+
+### Convertir de real a strings
+
+```fortran
+program ConvertRealToString
+    real :: num
+    character(len=20) :: str
+
+    num = 3.14159
+    write(str, '(F0.5)') num  ! F0.5 es el formato para convertir real a string con 5 decimales
+
+    print *, 'El número real como string es:', str
+end program ConvertRealToString
+```
+
+## Operaciones arimeticas
+
+```fortran
+program MathOperations
+    implicit none
+    real :: a, b, c
+    integer :: intResult
+    real :: floatResult
+
+    ! Operaciones Aritméticas Básicas
+    a = 5.0
+    b = 2.0
+    c = a + b
+    print *, 'Adición: ', c
+    c = a - b
+    print *, 'Sustracción: ', c
+    c = a * b
+    print *, 'Multiplicación: ', c
+    c = a / b
+    print *, 'División: ', c
+
+    ! Potencia
+    c = a ** b
+    print *, 'Potencia: ', c
+
+    ! Funciones Matemáticas
+    c = sqrt(a)
+    print *, 'Raíz Cuadrada: ', c
+    c = abs(a)
+    print *, 'Valor Absoluto: ', c
+    c = exp(a)
+    print *, 'Exponencial: ', c
+    c = log(a)
+    print *, 'Logaritmo Natural: ', c
+    c = log10(a)
+    print *, 'Logaritmo Base 10: ', c
+
+    ! Funciones Trigonométricas
+    c = sin(a)
+    print *, 'Seno: ', c
+    c = cos(a)
+    print *, 'Coseno: ', c
+    c = tan(a)
+    print *, 'Tangente: ', c
+    c = asin(0.5)
+    print *, 'Arc Seno: ', c
+    c = acos(0.5)
+    print *, 'Arc Coseno: ', c
+    c = atan(1.0)
+    print *, 'Arc Tangente: ', c
+
+    ! Funciones Hiperbólicas
+    c = sinh(a)
+    print *, 'Seno Hiperbólico: ', c
+    c = cosh(a)
+    print *, 'Coseno Hiperbólico: ', c
+    c = tanh(a)
+    print *, 'Tangente Hiperbólica: ', c
+
+    ! Funciones de Redondeo
+    c = 5.6789
+    intResult = nint(c)
+    print *, 'Redondeo al Entero más Cercano: ', intResult
+    intResult = int(c)
+    print *, 'Parte Entera: ', intResult
+    floatResult = 5.6789
+    intResult = nint(floatResult * 100.0) / 100.0  ! Redondeo a 2 decimales
+    print *, 'Redondeo a 2 Decimales: ', intResult / 100.0
+    floatResult = 5.6789
+    intResult = int(floatResult * 100.0) / 100.0  ! Parte entera a 2 decimales
+    print *, 'Parte Entera a 2 Decimales: ', intResult / 100.0
+
+end program MathOperations
+```
+
+## SISTEMAS NÚMERICOS
+
+```fortran
+program NumberSystems
+    implicit none
+    integer :: bin_a, bin_b, bin_result
+    integer :: oct_a, oct_b, oct_result
+    integer :: hex_a, hex_b, hex_result
+
+    ! Operaciones en Binario
+    bin_a = 2#0101  ! Binario 0101 = Decimal 5
+    bin_b = 2#0110  ! Binario 0110 = Decimal 6
+    bin_result = bin_a + bin_b
+    print *, 'Resultado de la Adición en Binario: ', bin_result
+
+    bin_result = bin_a - bin_b
+    print *, 'Resultado de la Sustracción en Binario: ', bin_result
+
+    ! Operaciones en Octal
+    oct_a = 8#123  ! Octal 123 = Decimal 83
+    oct_b = 8#456  ! Octal 456 = Decimal 302
+    oct_result = oct_a + oct_b
+    print *, 'Resultado de la Adición en Octal: ', oct_result
+
+    oct_result = oct_a - oct_b
+    print *, 'Resultado de la Sustracción en Octal: ', oct_result
+
+    ! Operaciones en Hexadecimal
+    hex_a = 16#1A  ! Hexadecimal 1A = Decimal 26
+    hex_b = 16#2B  ! Hexadecimal 2B = Decimal 43
+    hex_result = hex_a + hex_b
+    print *, 'Resultado de la Adición en Hexadecimal: ', hex_result
+
+    hex_result = hex_a - hex_b
+    print *, 'Resultado de la Sustracción en Hexadecimal: ', hex_result
+
+end program NumberSystems
+```
+
+## PUNTO FLOTANTE
+
+```fortran
+program FloatingPointAndErrors
+    implicit none
+
+    ! Declaración de variables
+    real :: a, b, result
+    real :: trueValue, approxValue, absError, relError
+    real :: sum, diff, prod, quot
+
+    ! Ejemplo del Sistema Numérico de Punto Flotante
+    ! Definición y aplicación
+    a = 5.123456
+    b = 2.71828
+
+    print *, 'Valores de punto flotante:'
+    print *, 'a = ', a
+    print *, 'b = ', b
+
+    ! Teoría de Errores
+    ! Valores verdaderos y aproximados
+    trueValue = 3.14159
+    approxValue = 3.14
+
+    ! Cálculo del Error Absoluto
+    absError = abs(trueValue - approxValue)
+    print *, 'Error Absoluto =', absError
+
+    ! Cálculo del Error Relativo
+    relError = absError / abs(trueValue)
+    print *, 'Error Relativo =', relError
+
+    ! Error Propagado (se vería en cálculos sucesivos, solo un ejemplo básico aquí)
+    ! Realizamos una suma para ilustrar
+    result = a + b + approxValue
+    print *, 'Resultado con error propagado (suma):', result
+
+    ! Error Significativo y Redondeo
+    ! Simulación de error de redondeo
+    trueValue = 123456.789
+    approxValue = 123456.7  ! Redondeo a 1 decimal
+    absError = abs(trueValue - approxValue)
+    print *, 'Error de Redondeo Absoluto =', absError
+
+    ! Aritmética de Punto Flotante
+    a = 5.5
+    b = 2.2
+
+    ! Adición
+    sum = a + b
+    print *, 'Adición: ', sum
+
+    ! Sustracción
+    diff = a - b
+    print *, 'Sustracción: ', diff
+
+    ! Multiplicación
+    prod = a * b
+    print *, 'Multiplicación: ', prod
+
+    ! División
+    quot = a / b
+    print *, 'División: ', quot
+
+end program FloatingPointAndErrors
+```
+
+## ARREGLOS
+
+### Declaración y Uso de Arreglos Unidimensionales
+
+```fortran
+program ArrayExample
+    integer, dimension(5) :: arr
+    integer :: i
+
+    do i = 1, 5
+        arr(i) = i * 2
+    end do
+
+    print *, arr
+end program ArrayExample
+```
+
+### Arreglos Multidimensionales
+
+```fortran
+program MultiArrayExample
+    integer, dimension(3, 3) :: mat
+    integer :: i, j
+
+    do i = 1, 3
+        do j = 1, 3
+            mat(i, j) = i + j
+        end do
+    end do
+
+    print *, mat
+end program MultiArrayExample
+```
+## FUNCIONES Y SUBRUTINAS
+
 ## Funciones
 ```fortran
 program FunctionExample
@@ -289,6 +524,7 @@ contains
 
 end program SubroutineExample
 ```
+
 ## Definición de Módulos y Tipos Definidos por el Usuario
 
 ```fortran
@@ -322,48 +558,6 @@ program ClassExample
 end program ClassExample
 
 ```
-## Lectura e Impresiones
-```fortran
-program ReadAndPrintData
-    implicit none
-    integer :: intValue
-    real :: realValue
-    character(len=20) :: str
-    integer, dimension(5) :: arr
-    integer :: i, io_status
-
-    ! Lectura desde la consola
-    print *, 'Introduce un valor entero:'
-    read(*, *) intValue
-    print *, 'Introduce un valor real:'
-    read(*, *) realValue
-    print *, 'Introduce una cadena de texto:'
-    read(*, '(A)') str
-
-    ! Impresión de datos leídos desde la consola
-    print *, 'Valor entero introducido:', intValue
-    print *, 'Valor real introducido:', realValue
-    print *, 'Cadena de texto introducida:', str
-
-    ! Lectura desde un archivo
-    open(unit=10, file='data.txt', status='old', action='read', iostat=io_status)
-    if (io_status /= 0) then
-        print *, 'Error al abrir el archivo.'
-        stop
-    end if
-
-    read(10, *) arr
-    close(10)
-
-    ! Impresión de datos leídos desde el archivo
-    print *, 'Array leído del archivo:'
-    do i = 1, 5
-        print *, 'Elemento', i, ':', arr(i)
-    end do
-
-end program ReadAndPrintData
-```
-
 ## Conceptos combinados
 
 ```fortran
@@ -484,183 +678,4 @@ contains
     end subroutine printInfo
 
 end module PersonModule
-```
-## Puntos Flotantes
-
-```fortran
-program FloatingPointAndErrors
-    implicit none
-
-    ! Declaración de variables
-    real :: a, b, result
-    real :: trueValue, approxValue, absError, relError
-    real :: sum, diff, prod, quot
-
-    ! Ejemplo del Sistema Numérico de Punto Flotante
-    ! Definición y aplicación
-    a = 5.123456
-    b = 2.71828
-
-    print *, 'Valores de punto flotante:'
-    print *, 'a = ', a
-    print *, 'b = ', b
-
-    ! Teoría de Errores
-    ! Valores verdaderos y aproximados
-    trueValue = 3.14159
-    approxValue = 3.14
-
-    ! Cálculo del Error Absoluto
-    absError = abs(trueValue - approxValue)
-    print *, 'Error Absoluto =', absError
-
-    ! Cálculo del Error Relativo
-    relError = absError / abs(trueValue)
-    print *, 'Error Relativo =', relError
-
-    ! Error Propagado (se vería en cálculos sucesivos, solo un ejemplo básico aquí)
-    ! Realizamos una suma para ilustrar
-    result = a + b + approxValue
-    print *, 'Resultado con error propagado (suma):', result
-
-    ! Error Significativo y Redondeo
-    ! Simulación de error de redondeo
-    trueValue = 123456.789
-    approxValue = 123456.7  ! Redondeo a 1 decimal
-    absError = abs(trueValue - approxValue)
-    print *, 'Error de Redondeo Absoluto =', absError
-
-    ! Aritmética de Punto Flotante
-    a = 5.5
-    b = 2.2
-
-    ! Adición
-    sum = a + b
-    print *, 'Adición: ', sum
-
-    ! Sustracción
-    diff = a - b
-    print *, 'Sustracción: ', diff
-
-    ! Multiplicación
-    prod = a * b
-    print *, 'Multiplicación: ', prod
-
-    ! División
-    quot = a / b
-    print *, 'División: ', quot
-
-end program FloatingPointAndErrors
-```
-## Operaciones arimeticas
-```fortran
-program MathOperations
-    implicit none
-    real :: a, b, c
-    integer :: intResult
-    real :: floatResult
-
-    ! Operaciones Aritméticas Básicas
-    a = 5.0
-    b = 2.0
-    c = a + b
-    print *, 'Adición: ', c
-    c = a - b
-    print *, 'Sustracción: ', c
-    c = a * b
-    print *, 'Multiplicación: ', c
-    c = a / b
-    print *, 'División: ', c
-
-    ! Potencia
-    c = a ** b
-    print *, 'Potencia: ', c
-
-    ! Funciones Matemáticas
-    c = sqrt(a)
-    print *, 'Raíz Cuadrada: ', c
-    c = abs(a)
-    print *, 'Valor Absoluto: ', c
-    c = exp(a)
-    print *, 'Exponencial: ', c
-    c = log(a)
-    print *, 'Logaritmo Natural: ', c
-    c = log10(a)
-    print *, 'Logaritmo Base 10: ', c
-
-    ! Funciones Trigonométricas
-    c = sin(a)
-    print *, 'Seno: ', c
-    c = cos(a)
-    print *, 'Coseno: ', c
-    c = tan(a)
-    print *, 'Tangente: ', c
-    c = asin(0.5)
-    print *, 'Arc Seno: ', c
-    c = acos(0.5)
-    print *, 'Arc Coseno: ', c
-    c = atan(1.0)
-    print *, 'Arc Tangente: ', c
-
-    ! Funciones Hiperbólicas
-    c = sinh(a)
-    print *, 'Seno Hiperbólico: ', c
-    c = cosh(a)
-    print *, 'Coseno Hiperbólico: ', c
-    c = tanh(a)
-    print *, 'Tangente Hiperbólica: ', c
-
-    ! Funciones de Redondeo
-    c = 5.6789
-    intResult = nint(c)
-    print *, 'Redondeo al Entero más Cercano: ', intResult
-    intResult = int(c)
-    print *, 'Parte Entera: ', intResult
-    floatResult = 5.6789
-    intResult = nint(floatResult * 100.0) / 100.0  ! Redondeo a 2 decimales
-    print *, 'Redondeo a 2 Decimales: ', intResult / 100.0
-    floatResult = 5.6789
-    intResult = int(floatResult * 100.0) / 100.0  ! Parte entera a 2 decimales
-    print *, 'Parte Entera a 2 Decimales: ', intResult / 100.0
-
-end program MathOperations
-```
-
-## Sistemas númericos
-
-```fortran
-program NumberSystems
-    implicit none
-    integer :: bin_a, bin_b, bin_result
-    integer :: oct_a, oct_b, oct_result
-    integer :: hex_a, hex_b, hex_result
-
-    ! Operaciones en Binario
-    bin_a = 2#0101  ! Binario 0101 = Decimal 5
-    bin_b = 2#0110  ! Binario 0110 = Decimal 6
-    bin_result = bin_a + bin_b
-    print *, 'Resultado de la Adición en Binario: ', bin_result
-
-    bin_result = bin_a - bin_b
-    print *, 'Resultado de la Sustracción en Binario: ', bin_result
-
-    ! Operaciones en Octal
-    oct_a = 8#123  ! Octal 123 = Decimal 83
-    oct_b = 8#456  ! Octal 456 = Decimal 302
-    oct_result = oct_a + oct_b
-    print *, 'Resultado de la Adición en Octal: ', oct_result
-
-    oct_result = oct_a - oct_b
-    print *, 'Resultado de la Sustracción en Octal: ', oct_result
-
-    ! Operaciones en Hexadecimal
-    hex_a = 16#1A  ! Hexadecimal 1A = Decimal 26
-    hex_b = 16#2B  ! Hexadecimal 2B = Decimal 43
-    hex_result = hex_a + hex_b
-    print *, 'Resultado de la Adición en Hexadecimal: ', hex_result
-
-    hex_result = hex_a - hex_b
-    print *, 'Resultado de la Sustracción en Hexadecimal: ', hex_result
-
-end program NumberSystems
 ```
