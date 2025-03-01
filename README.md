@@ -1,5 +1,20 @@
 # GUÍA DE FORTRAN
 
+# Índice de Contenidos
+
+1. [Variables y sus Tipos](#variables-y-sus-tipos)
+2. [Estructuras de Datos](#estructuras-de-datos)
+    - [Estructuras Selectivas](#estructuras-selectivas)
+    - [Estructuras Repetitivas](#estructuras-repetitivas)
+3. [Operadores](#operadores)
+    - [Operadores Lógicos](#operadores-lógicos)
+    - [Operadores Comparativos](#operadores-comparativos)
+4. [Conversiones](#conversiones)
+5. [Operaciones Aritméticas](#operaciones-aritméticas)
+6. [Sistemas Numéricos](#sistemas-numéricos)
+7. [Puntos Flotantes](#puntos-flotantes)
+8. [Arreglos](#arreglos)
+
 ## VARIABLES Y SUS TIPOS
 
 ### Variables Enteras
